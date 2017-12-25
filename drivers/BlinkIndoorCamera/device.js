@@ -14,7 +14,7 @@ class BlinkCamera extends Homey.Device {
         this.setCapabilityValue("last_vid", today);
         this.updateDevice();
         this.start_update_loop();
-        console.log(this.getData().id);
+
 
 
     }
@@ -59,6 +59,16 @@ class BlinkCamera extends Homey.Device {
     onFlowCardCapture_vid() {
         console.log("Capturing Video");
         Homey.app.Capture_vid(this.getData().id);
+
+        return true;
+    }
+    onFlowCardSettings(args) {
+        console.log("Changing setting");
+        let setting = args.setting;
+        let value = args.value;
+        let deviceID = this.getData().id;
+
+        Homey.app.ChangeCamSetting(deviceID, setting, value);
 
         return true;
     }

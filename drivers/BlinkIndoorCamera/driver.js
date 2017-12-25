@@ -22,6 +22,10 @@ class BlinkDriver extends Homey.Driver {
             .register()
             .registerRunListener(args => args.Capture_snap.onFlowCardCapture_snap());
 
+        new Homey.FlowCardAction('Change_setting')
+            .register()
+            .registerRunListener(args => args.change_setting.onFlowCardSettings(args));
+
     }
 
 

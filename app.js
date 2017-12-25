@@ -598,6 +598,7 @@ class BlinkApp extends Homey.App {
 
     //Change camera setting
     async ChangeCamSetting(CameraID, Setting, Value) {
+        console.log("API call started");
         var authtoken = await this.GetAuthToken();
         var networkID = await this.GetNetworks();
         var networkID = networkID.id;
@@ -620,8 +621,10 @@ class BlinkApp extends Homey.App {
             request(options, function(err, res, body) {
                 if (err) {
                     reject("Request Error: " + err);
+                    console.log("error: " +err);
                 } else if (res.statusCode !== 200) {
                     reject("API Response not valid: " + body);
+                    console.log("error2: " +body);
                 } else {
                     var GetCamerasResponse = JSON.parse(body);
                     if (GetCamerasResponse == null) {
