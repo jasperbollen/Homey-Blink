@@ -24,6 +24,9 @@ class BlinkCamera extends Homey.Device {
     }
 
     onDeleted() {
+        if (this._timer) {
++            clearInterval(this._timer)
++        }
         this.log('device deleted');
     }
 
@@ -137,7 +140,7 @@ class BlinkCamera extends Homey.Device {
     }
 
     start_update_loop() {
-        setInterval(() => {
+        this._timer = setInterval(() => {
             this.updateDevice();
         }, 300000); //5 min
     }
@@ -145,12 +148,11 @@ class BlinkCamera extends Homey.Device {
     async updateDevice() {
         let Camerainfo = await Homey.app.GetCamera(this.getData().id);
         //console.log(Camerainfo);
-
         //Get values
         let temp = Camerainfo.temperature;
         let measure_temperature_value = (temp - 32) * 5 / 9;
 
-        let onoff_value = Camerainfo.enabled; //not correct yet, should contain the "arm/not armed network status"
+        let onoff_value = Camerainfo.enabled;
 
         let wifi_strength = Camerainfo.wifi_strength;
         let wifi_signal_value = "Very poor";

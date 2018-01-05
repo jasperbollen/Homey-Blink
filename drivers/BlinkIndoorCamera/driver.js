@@ -43,7 +43,7 @@ class BlinkDriver extends Homey.Driver {
             device.MotionDetected(DateString);
         }
         else{
-          console.log("Unknown device: " +DeviceIDp);
+          //console.log("Unknown device: " +DeviceIDp);
           //device.MotionDetected(DateString);
         }
     }

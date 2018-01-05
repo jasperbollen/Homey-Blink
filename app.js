@@ -276,7 +276,6 @@ class BlinkApp extends Homey.App {
                         var devices = [];
                         for (var prop in GetCamerasResponse.devicestatus) {
                             let device_list = GetCamerasResponse.devicestatus[prop];
-                            //console.log(device_list);
                             var device = {
                                 "name": device_list.name,
                                 "data": {
