@@ -25,8 +25,8 @@ class BlinkCamera extends Homey.Device {
 
     onDeleted() {
         if (this._timer) {
-+            clearInterval(this._timer)
-+        }
+            clearInterval(this._timer)
+        }
         this.log('device deleted');
     }
 
